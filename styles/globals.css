@@ -1,9 +1,14 @@
+* {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -13,4 +18,64 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+/* AUTO FILL FORM STYLE */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
+  transition-delay: background-color 5000s, color 5000s;
+}
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px #ffffff00 inset;
+}
+/*waves****************************/
+
+.box {
+  position: fixed;
+  top: 0;
+  transform: rotate(80deg);
+  left: 0;
+  z-index: -1;
+}
+
+.wave {
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0.4;
+  position: absolute;
+  top: 3%;
+  left: 10%;
+  background: rgba(50, 53, 53, 0.13);
+  width: 1500px;
+  height: 1300px;
+  margin-left: -150px;
+  margin-top: -250px;
+  transform-origin: 50% 48%;
+  border-radius: 43%;
+  box-shadow: 0 1px 1px 15px #3335;
+  animation: drift 5000ms infinite linear;
+}
+
+.box:after {
+  content: "";
+  display: block;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 11;
+  transform: translate3d(0, 0, 0);
+}
+
+@keyframes drift {
+  from {
+    transform: rotate(0deg);
+  }
+  from {
+    transform: rotate(360deg);
+  }
 }
