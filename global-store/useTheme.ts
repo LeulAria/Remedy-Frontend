@@ -1,19 +1,32 @@
 import { PaletteMode } from "@mui/material";
-import create from "zustand";
+import createStore from "zustand";
+import persist from "../config/persist";
 
 type Store = {
   mode: PaletteMode;
   toggleMode: () => void;
 };
 
-const useTheme = create<Store>((set) => ({
-  mode: "dark",
-  toggleMode() {
-    set((state) => ({
-      ...state,
-      mode: state.mode === "dark" ? "light" : "dark",
-    }));
-  },
-}));
+let modeType = false;
+if (typeof window !== "undefined") {
+  modeType = window.matchMedia("(prefers-color-scheme: dark)").matches;
+}
+
+const useTheme = createStore<Store>(
+  persist(
+    {
+      key: "theme",
+    },
+    (set) => ({
+      mode: modeType ? "dark" : "light",
+      toggleMode() {
+        set((state) => ({
+          ...state,
+          mode: state.mode === "dark" ? "light" : "dark",
+        }));
+      },
+    })
+  )
+);
 
 export default useTheme;
