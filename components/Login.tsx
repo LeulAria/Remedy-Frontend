@@ -33,13 +33,16 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <div className="box">
         <div className="wave"></div>
+        <div className="wave-2"></div>
       </div>
 
       <Typography variant="h3" style={{ fontWeight: 900 }}>
         Remedy
       </Typography>
+      
       <Box fontSize=".86rem" mb={5}>
         The Public Diary
       </Box>

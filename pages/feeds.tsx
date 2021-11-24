@@ -2,13 +2,18 @@ import React from "react";
 import Head from "next/head";
 import { Box } from "@mui/system";
 import { gql } from "@apollo/client";
-import { Button, Grid, Hidden, TextField, Typography } from "@mui/material";
-import VpnKeyIcon from "@mui/icons-material/VpnKey";
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import QuoteCarousel from "../components/QuoteCarousel";
-import Link from "next/link";
-
-import styles from "./Homepage.module.css";
+import {
+  Button,
+  Grid,
+  Hidden,
+  IconButton,
+  TextField,
+  Typography,
+} from "@mui/material";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import useTheme from "../global-store/useTheme";
+import styles from "../styles/Home.module.css";
 
 const FetchPosts = gql`
   query GetPosts {
@@ -24,6 +29,8 @@ const FetchPosts = gql`
 `;
 
 export default function Feeds() {
+  const { mode, toggleMode } = useTheme((state) => state);
+
   return (
     <div>
       <Grid
@@ -46,6 +53,14 @@ export default function Feeds() {
             <div>theme</div>
             <div>settings</div>
             <div>Ads</div>
+            <IconButton
+              color="primary"
+              aria-label="upload picture"
+              component="span"
+              onClick={toggleMode}
+            >
+              {mode === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
+            </IconButton>
           </Grid>
         </Hidden>
         <Grid
